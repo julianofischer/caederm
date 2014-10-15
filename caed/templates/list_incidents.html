@@ -1,0 +1,9 @@
+{% if incidents %}
+    <ul>
+    {% for incident in incidents %}
+        <li>{{ incident.title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No incidents available.</p>
+{% endif %}

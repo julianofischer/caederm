@@ -1,0 +1,51 @@
+<html>
+
+<head>
+     <title>Relatório</title>
+     {% load staticfiles %}
+     <style>
+         @media print {
+             hr.page-breaker {
+                    page-break-after: always;
+             }
+         }
+     </style>
+</head>
+
+<body>
+    <div id="main">
+    <div id="container">
+    
+    {% for incident in incidents %}
+ 
+        {% if forloop.counter0|divisibleby:"2" %}
+            <div class="head">
+                <p><img src="{% static "temp.jpg" %}"/></p>
+                Serviço Público Federal</br>
+                Ministério da Educação</br>
+                Secretaria de Educação Profissional e Tecnológica</br>
+                Instituto Federal de Educação, Ciência e Tecnologia de Rondônia</br>
+            </div>
+        {% endif %}
+
+        <div class="row">
+        <div class="content">
+            <li>Título: {{ incident.title }}</li>
+            <li>Aluno: {{ incident.student.name }}</li>
+            <li>Turma: {{ incident.student.student_class }} </li>
+            <li>Tipo: {{ incident.type }} </li>
+            <li>Descrição: {{ incident.description }} </li>
+            <li>Medida tomada: {{ incident.measure_taken }} </li>
+            <li>Data: {{ incident.date_time }} </li>
+        </div>
+        </div>
+    
+    {% if forloop.counter0|add:"1"|divisibleby:"2" and forloop.counter0 > 0 %}
+        <hr class="page-breaker"/>
+    {% endif %}
+    
+    {% endfor %}
+</div>
+</div>
+</body>
+</html>
